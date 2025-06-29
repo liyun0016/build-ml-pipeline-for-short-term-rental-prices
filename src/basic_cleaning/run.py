@@ -40,6 +40,9 @@ def go(args):
     logger.info("Dropping rows with missing values in 'name' and 'last_review' columns")
     df = df.dropna(subset=["name", "last_review"])
 
+    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    df = df[idx].copy()
+
     # Save cleaned data to a local CSV file
     cleaned_file = "clean_sample.csv"
     logger.info(f"Saving cleaned data to {cleaned_file}")
