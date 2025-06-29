@@ -1,0 +1,40 @@
+name: basic_cleaning
+
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      input_artifact:
+        description: "The fully qualified name for the raw input artifact (e.g., 'sample.csv:latest') to clean"
+        type: string
+
+      output_artifact:
+        description: "The name for the output artifact that will store the cleaned dataset"
+        type: string
+
+      output_type:
+        description: "The type of the output artifact (e.g., 'clean_data')"
+        type: string
+
+      output_description:
+        description: "A short description of what the output artifact contains"
+        type: string
+
+      min_price:
+        description: "Minimum listing price to retain in the cleaned dataset"
+        type: float
+
+      max_price:
+        description: "Maximum listing price to retain in the cleaned dataset"
+        type: float
+
+    command: >-
+      python run.py
+      --input_artifact {input_artifact}
+      --output_artifact {output_artifact}
+      --output_type {output_type}
+      --output_description {output_description}
+      --min_price {min_price}
+      --max_price {max_price}
